@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @package     Intelipost_Push
+ * @copyright   Copyright (c) Intelipost
+ * @author      Alex Restani <alex.restani@intelipost.com.br>
+ */
+-->
+
+<config>
+    <router id="admin">
+        <route id="intelipost_push" frontName="intelipost_push">
+            <module name="Intelipost_Push" />
+        </route>
+    </router>
+</config>

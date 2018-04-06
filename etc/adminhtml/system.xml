@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @package     Intelipost_Push
+ * @copyright   Copyright (c) Intelipost
+ * @author      Alex Restani <alex.restani@intelipost.com.br>
+ */
+-->
+
+<config>
+    <system>
+        <tab id="intelipost" translate="label" sortOrder="0">
+            <label>Intelipost</label>
+        </tab>
+        <section id="intelipost_push" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Push</label>
+            <tab>intelipost</tab>
+            <resource>Intelipost_Push::config</resource>
+            <group id="attributes" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Attributes</label>
+                <field id="federal_tax_payer_id" translate="label comment" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <source_model>Intelipost\Quote\Model\Config\Source\Attribute</source_model>
+                    <label>Federal tax payer id</label>
+                    <comment>Select CPF attribute</comment>
+                </field>
+            </group>
+            <group id="order_status" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Order Status</label>
+                <field id="status_to_create" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <source_model>Intelipost\Push\Model\Config\Source\Order\Status</source_model>
+                    <label>Magento trigger status to create</label>
+                    <comment>Magento trigger status</comment>
+                </field>
+                <field id="magento_status_after_create" translate="label comment" type="select" sortOrder="101" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <source_model>Intelipost\Push\Model\Config\Source\Order\Status</source_model>
+                    <label>Magento status after create</label>
+                    <comment>When an order is successful created on Intelipost, change Magento status</comment>
+                </field>
+                <field id="create_and_ship" translate="label" type="select" sortOrder="102" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Create and ship</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Create order with shipped date</comment>
+                </field>
+                <field id="status_to_ship" translate="label" type="select" sortOrder="103" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <source_model>Intelipost\Push\Model\Config\Source\Order\Status</source_model>
+                    <label>Magento trigger status to ship</label>
+                    <comment></comment>
+                    <depends>
+                        <field id="create_and_ship">0</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="cron_config" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Cron Config</label>
+                <field id="enable_create_cron" translate="label comment" type="select" sortOrder="201" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <label>Use cron to create orders</label>
+                    <comment></comment>
+                </field>
+                <field id="cron_status_to_create" translate="label" type="multiselect" sortOrder="202" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <source_model>Intelipost\Push\Model\Config\Source\Order\Status</source_model>
+                    <label>Cron status to create</label>
+                    <comment></comment>
+                    <depends>
+                        <field id="enable_create_cron">1</field>
+                    </depends>
+                </field>
+                <field id="order_qty_to_create" translate="label" type="text" sortOrder="203" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order quantity to create</label>
+                    <comment></comment>
+                    <depends>
+                        <field id="enable_create_cron">1</field>
+                    </depends>
+                </field>
+                <field id="frequency_to_create" translate="label" type="text" sortOrder="204" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Frequency to create</label>
+                    <comment>Minutes</comment>
+                    <depends>
+                        <field id="enable_create_cron">1</field>
+                    </depends>
+                </field>
+                <field id="enable_ship_cron" translate="label comment" type="select" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <label>Use cron to ship orders</label>
+                    <comment></comment>
+                </field>
+                <field id="cron_status_to_ship" translate="label" type="multiselect" sortOrder="211" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <source_model>Intelipost\Push\Model\Config\Source\Order\Status</source_model>
+                    <label>Cron status to ship</label>
+                    <comment></comment>
+                    <depends>
+                        <field id="enable_ship_cron">1</field>
+                    </depends>
+                </field>
+                <field id="order_qty_to_ship" translate="label" type="text" sortOrder="212" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order quantity to ship</label>
+                    <comment></comment>
+                    <depends>
+                        <field id="enable_ship_cron">1</field>
+                    </depends>
+                </field>
+                <field id="frequency_to_ship" translate="label" type="text" sortOrder="213" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Frequency to ship</label>
+                    <comment>Minutes</comment>
+                    <depends>
+                        <field id="enable_ship_cron">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

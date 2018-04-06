@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="intelipost_create_order" instance="Intelipost\Push\Cron\CreateOrder" method="execute">
+            <schedule>* * * * *</schedule>
+        </job>
+        <job name="intelipost_ship_order" instance="Intelipost\Push\Cron\ShipOrder" method="execute">
+            <schedule>* * * * *</schedule>
+        </job>
+    </group>
+</config>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @package     Intelipost_Push
+ * @copyright   Copyright (c) Intelipost
+ * @author      Alex Restani <alex.restani@intelipost.com.br>
+ */
+-->
+
+<config>
+    <menu>
+        <add id="Intelipost_Push::manager" title="Push" module="Intelipost_Push" sortOrder="10"  parent="Intelipost_Basic::intelipost" resource="Intelipost_Push::manager" />
+        <add id="Intelipost_Push::orders" title="Orders" module="Intelipost_Push" sortOrder="10"  parent="Intelipost_Push::manager"   resource="Intelipost_Push::orders" action="intelipost_push/orders/index" />
+    </menu>
+</config>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @package     Intelipost_Push
+ * @copyright   Copyright (c) Intelipost
+ * @author      Alex Restani <alex.restani@intelipost.com.br>
+ */
+-->
+
+<config>
+    <module name="Intelipost_Push" setup_version="1.0.0">
+        <sequence>
+            <module name="Intelipost_Basic" />
+        </sequence>
+    </module>
+</config>

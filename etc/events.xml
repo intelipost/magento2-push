@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @package     Intelipost_Push
+ * @copyright   Copyright (c) Intelipost
+ * @author      Alex Restani
+ */
+-->
+
+<config>
+    <event name="sales_order_save_commit_after">
+        <observer name="intelipost_push_order_save_after" instance="Intelipost\Push\Observer\OrderSaveAfter" />
+    </event>
+</config>
