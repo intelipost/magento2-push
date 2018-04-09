@@ -135,7 +135,7 @@ Obs: Vale ressaltar que toda tentativa de criação ou despacho, seja de forma m
 
 ## Nota Fiscal
 
-O módulo contempla uma tabela de Notas Fiscais. Os campos desta tabela são:
+O módulo contempla uma tabela de Notas Fiscais (intelipost_invoice). Os campos desta tabela são:
 
 | Campo | Descrição |Tipo|
 | ------ | ------ |------|
