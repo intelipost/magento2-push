@@ -6,7 +6,7 @@
 O módulo Push Intelipost é responsável por enviar as entregas criadas no Magento para a Intelipost. 
 Este processo é indispensável para o uso do Rastreamento e Gestão de Despacho da nossa ferramenta.
 
-Este manual foi divido em três partes:
+Este manual foi divido em quatro partes:
 
   - [Instalação](#instalação): Onde você econtrará instruções para instalar nosso módulo.
   - [Configurações](#configurações): Onde você encontrará o caminho para realizar as configurações e explicações de cada uma delas.
