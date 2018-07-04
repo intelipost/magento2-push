@@ -34,7 +34,7 @@ class Attributes implements OptionSourceInterface
 
         $options = [];
         foreach ($attributeCollection as $attribute)  {
-            $result [] = ['value' => $attribute->getAttributeCode(), 'label' => $attribute->getFrontendLabel()];
+            $options[] = ['value' => $attribute->getAttributeCode(), 'label' => $attribute->getFrontendLabel()];
         }
 
         return $options;
