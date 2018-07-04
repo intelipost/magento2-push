@@ -2,7 +2,7 @@
     "name": "luanet/magento2-push",
     "description": "Fork Intelipost Push",
     "type": "magento2-module",
-    "version": "1.0.4",
+    "version": "1.0.6",
     "authors": [
         {
             "name": "Lucas Santos",
