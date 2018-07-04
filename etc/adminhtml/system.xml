@@ -20,7 +20,7 @@
             <group id="attributes" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Attributes</label>
                 <field id="federal_tax_payer_id" translate="label comment" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <source_model>Intelipost\Quote\Model\Config\Source\Attribute</source_model>
+                    <source_model>Intelipost\Push\Model\Config\Source\Customer\Attributes</source_model>
                     <label>Federal tax payer id</label>
                     <comment>Select CPF attribute</comment>
                 </field>
