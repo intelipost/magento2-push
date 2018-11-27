@@ -162,19 +162,7 @@
                     <item name="label" xsi:type="string" translate="true">Order Number</item>
                 </item>
             </argument>
-        </column>
-        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">dateRange</item>
-                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
-                    <item name="dataType" xsi:type="string">date</item>
-                    <item name="sorting" xsi:type="string">desc</item>
-                    <item name="label" xsi:type="string" translate="true">Purchase Date</item>
-                    <item name="dateFormat" xsi:type="string">MMM dd, YYYY, H:MM:SS A</item>
-                </item>
-            </argument>
-        </column>
+        </column>        
         <column name="description">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -222,16 +210,7 @@
                     <item name="label" xsi:type="string" translate="true">Quote Id</item>
                 </item>
             </argument>
-        </column>
-        <column name="status">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="sorting" xsi:type="string">asc</item>
-                    <item name="label" xsi:type="string" translate="true">Magento Status</item>
-                </item>
-            </argument>
-        </column>
+        </column>        
         <column name="intelipost_status">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
