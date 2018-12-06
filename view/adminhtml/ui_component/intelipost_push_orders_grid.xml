@@ -14,14 +14,7 @@
             <item name="deps" xsi:type="string">intelipost_push_orders_grid.intelipost_shipment_grid_data_source</item>
         </item>
         <item name="spinner" xsi:type="string">intelipost_push_orders_grid_columns</item>
-        <item name="buttons" xsi:type="array">
-            <item name="add" xsi:type="array">
-                <item name="name" xsi:type="string">add</item>
-                <item name="label" xsi:type="string" translate="true">Add New Item</item>
-                <item name="class" xsi:type="string">primary</item>
-                <item name="url" xsi:type="string">intelipost_pickup/stores/new</item>
-            </item>
-        </item>
+        
     </argument>
     <dataSource name="intelipost_shipment_grid_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
@@ -179,14 +172,7 @@
                 </item>
             </argument>
         </column>
-        <column name="shipping_amount" class="Magento\Sales\Ui\Component\Listing\Column\Price">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="visible" xsi:type="boolean">true</item>
-                    <item name="label" xsi:type="string" translate="true">Shipping Amount</item>
-                </item>
-            </argument>
-        </column>
+        
         <column name="provider_shipping_costs" class="Magento\Sales\Ui\Component\Listing\Column\Price">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
