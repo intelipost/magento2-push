@@ -79,7 +79,7 @@ class Customer extends AbstractModel
 
         $retorno = "s/n";
 
-        if (count($number) > 1)
+        if ($number)
         {
             if (is_numeric(trim($number[1])))
             {

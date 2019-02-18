@@ -187,7 +187,7 @@ class ShipmentOrder extends AbstractModel
     public function saveTrackingCodes($collectionData)
     {
         $_collectionFactory = $this->_shipment->load($collectionData['id'], "id");
-        if(sizeof($this->tracking_codes) > 0)
+        if ($this->tracking_codes)
         {
             $_collectionFactory->setTrackingCode($this->tracking_codes);
         }
