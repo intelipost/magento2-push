@@ -2,7 +2,7 @@
     "name": "intelipost/magento2-push",
     "description": "Intelipost Push",
     "type": "magento2-module",
-    "version":"1.1.2",
+    "version":"1.2.0",
     "authors": [
         {
             "name": "Alex Restani",
