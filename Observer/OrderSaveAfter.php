@@ -56,7 +56,7 @@ class OrderSaveAfter implements ObserverInterface
         $colData = $shipmentObj->getData();
 
         //Apenas uma entrega
-        if(sizeof($shipmentObj) == 1)
+        if($shipmentObj->getSize() == 1)
         {   
             foreach($colData as $shipment)
             {
@@ -79,7 +79,7 @@ class OrderSaveAfter implements ObserverInterface
 
 
         //Mais de uma entrega, podem ser criados/despachados separadamente
-        if(sizeof($shipmentObj) > 1)
+        if($shipmentObj->getSize() > 1)
         {
             $this->_helper->logIntelipost(json_encode('duas entregas'));
             //criação do pedidos
