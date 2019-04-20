@@ -45,7 +45,7 @@ class OrderSaveAfter implements ObserverInterface
         $order         = $observer->getOrder();
         $magentoStatus = $order->getStatus();
         $entity_id     = $order->getEntityId();
-        
+
         $statusToCreate           = $this->_scopeConfig->getValue('intelipost_push/order_status/status_to_create');
         $magentoStatusAfterCreate = $this->_scopeConfig->getValue('intelipost_push/order_status/magento_status_after_create');
         $createAndShip            = $this->_scopeConfig->getValue('intelipost_push/order_status/create_and_ship');
@@ -57,18 +57,18 @@ class OrderSaveAfter implements ObserverInterface
 
         //Apenas uma entrega
         if(sizeof($shipmentObj) == 1)
-        {   
+        {
             foreach($colData as $shipment)
             {
                 //criação do pedido
                 if($magentoStatus == $statusToCreate && $shipment['intelipost_status'] == 'pending')
                 {
                     $col = $this->_shipmentOrder->create();
-                    $col->shipmentOrder($shipment);            
+                    $col->shipmentOrder($shipment);
                 }
 
                 //despacho do pedido
-                if(!$createAndShip && $magentoStatus == $statusToShip && $shipment['intelipost_status'] == 'created')
+                if(!$createAndShip && $magentoStatus == $statusToShip)
                 {
                     $col = $this->_shipped->create();
                     $col->shippedRequestBody($shipment);
@@ -84,7 +84,7 @@ class OrderSaveAfter implements ObserverInterface
             $this->_helper->logIntelipost(json_encode('duas entregas'));
             //criação do pedidos
             foreach($colData as $shipment)
-            {   
+            {
                 //fazer o match dos skus e criar as entregas relativas na Intelipost
             }
 
