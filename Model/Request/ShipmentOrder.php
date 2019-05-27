@@ -82,7 +82,7 @@ class ShipmentOrder extends AbstractModel
         $this->scheduling_window_end           = $collectionData['scheduling_window_end'];
         $this->shipment_order_type             = $collectionData['shipment_order_type'];
         $this->shipment_order_sub_type         = $collectionData['shipment_order_sub_type'];
-        $this->shipment_order_volume_invoice   = $invoiceObj->getInformation($collectionData['order_number']);
+        $this->shipment_order_volume_invoice   = $invoiceObj->getInformation($collectionData['entity_id']);
         $this->shipment_order_volume_array     = $volObj->getInformation($collectionData['volumes'], $this->shipment_order_volume_invoice);
         $this->end_customer                    = $ecObj->getInformation($collectionData['entity_id'], $collectionData['customer_taxvat']);
         if($this->_scopeConfig->getValue('intelipost_push/order_status/create_and_ship')){
