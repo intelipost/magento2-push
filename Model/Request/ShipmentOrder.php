@@ -92,6 +92,7 @@ class ShipmentOrder extends AbstractModel
         //$this->origin_warehouse_code         = null;
 
         $requestBody = $this->prepareShipmentRequestBody();
+
         $this->_helper->logIntelipost(json_encode($requestBody));
 
         $this->sendShipmentRequest(json_encode($requestBody), $collectionData);
@@ -127,7 +128,7 @@ class ShipmentOrder extends AbstractModel
     {
         $response = $this->_helperApi->apiRequest('POST', 'shipment_order', $requestBody);
         $result = json_decode($response);
-        
+
         if($result->status == 'ERROR')
         {
             $messages = null;

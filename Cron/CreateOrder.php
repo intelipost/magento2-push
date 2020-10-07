@@ -25,35 +25,38 @@ class CreateOrder
         \Intelipost\Push\Helper\Data $helper
     )
     {
-        $this->_scopeConfig        = $scopeConfig;
-        $this->_helper             = $helper;
-        $this->_collectionFactory  = $collectionFactory;
-        $this->_shipmentOrder      = $shipmentOrder;
-        $this->_shipment           = $shipment;
+        $this->_scopeConfig = $scopeConfig;
+        $this->_helper = $helper;
+        $this->_collectionFactory = $collectionFactory;
+        $this->_shipmentOrder = $shipmentOrder;
+        $this->_shipment = $shipment;
     }
 
     public function execute()
     {
-        $enable         = $this->_scopeConfig->getValue('intelipost_push/cron_config/enable_create_cron');
-        $orderQty       = $this->_scopeConfig->getValue('intelipost_push/cron_config/order_qty_to_create');
-        $frequency      = $this->_scopeConfig->getValue('intelipost_push/cron_config/frequency_to_create');
+        $enable = $this->_scopeConfig->getValue('intelipost_push/cron_config/enable_create_cron');
+        $orderQty = $this->_scopeConfig->getValue('intelipost_push/cron_config/order_qty_to_create');
+        $frequency = $this->_scopeConfig->getValue('intelipost_push/cron_config/frequency_to_create');
         $status = $this->_scopeConfig->getValue('intelipost_push/cron_config/cron_status_to_create');
-        
-        if($enable)
-        {
+
+        if ($enable) {
             $shipmentObj = $this->_collectionFactory->create();
-            
-            $shipmentObj->addFieldToFilter('status', $status)
-                ->addFieldToFilter('main_table.intelipost_status','pending');
+
+            $shipmentObj
+                ->addFieldToFilter('sfo.status', $status)
+                ->addFieldToFilter('main_table.intelipost_status', ["in"=>['pending','error']])
+                ->join(
+                    array("sfo" => "sales_order"),
+                    "main_table.order_number = sfo.increment_id"
+                )
+                ->setPageSize($orderQty)
+                ->setCurPage(1);
+
             $colData = $shipmentObj->getData();
 
-            if(sizeof($colData) >= $orderQty)
-            {
-                foreach($colData as $shipment)
-                {
-                    $col = $this->_shipmentOrder->create();
-                    $col->shipmentOrder($shipment);
-                }
+            foreach ($colData as $shipment) {
+                $col = $this->_shipmentOrder->create();
+                $col->shipmentOrder($shipment);
             }
         }
     }

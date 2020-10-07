@@ -45,11 +45,19 @@ class ShipOrder
         if($enable)
         {
             $shipmentObj = $this->_collectionFactory->create();
-            
-            $shipmentObj->addFieldToFilter('status', ['eq' => $status])
-                ->addFieldToFilter('main_table.intelipost_status', ['neq' => 'shipped']);
+
+            $shipmentObj
+                ->addFieldToFilter('sfo.status', $status)
+            ->addFieldToFilter('main_table.intelipost_status', ['neq' => 'shipped'])
+            ->join(
+                array("sfo" => "sales_order"),
+                "main_table.order_number = sfo.increment_id"
+            )
+            ->setPageSize($orderQty)
+            ->setCurPage(1);
+
             $colData = $shipmentObj->getData();
-            
+
             if(sizeof($colData) >= $orderQty)
             {
                 foreach($colData as $shipment)
