@@ -44,7 +44,7 @@ class Volume extends AbstractModel
 			$this->length 						 = $volume->length;
 			$this->width 						 = $volume->width;
 			$this->products_quantity 			 = $volume->products_quantity;
-			$this->products_nature 				 = 'products';
+			$this->products_nature 				 = 'beverages';
 			$this->is_icms_exempt 				 = false;
 			$this->shipment_order_volume_invoice = $invoice;
 			//$this->tracking_code 				 = $tracking_code;
