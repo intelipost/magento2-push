@@ -17,7 +17,7 @@ interface InvoiceInterface
  * @return \Intelipost\Push\Api\Data\InvoiceResultInterface
  * @throws \Magento\Framework\Exception\LocalizedException
  */
-public function getList();
+    public function getList();
 
 /**
  * Retrive item information
@@ -27,7 +27,7 @@ public function getList();
  * @return \Intelipost\Push\Api\Data\ItemsInterface
  * @throws \Magento\Framework\Exception\LocalizedException
  */
-public function getInfo($id);
+    public function getInfo($id);
 
 /**
  * Save item information
@@ -37,7 +37,7 @@ public function getInfo($id);
  * @return bool
  * @throws \Magento\Framework\Exception\LocalizedException
  */
-public function saveInvoice($invoice);
+    public function saveInvoice($invoice);
 
 /**
  * Delete item
@@ -47,6 +47,5 @@ public function saveInvoice($invoice);
  * @return bool
  * @throws \Magento\Framework\Exception\LocalizedException
  */
-public function deleteItem($id);
-
+    public function deleteItem($id);
 }

@@ -10,7 +10,7 @@ namespace Intelipost\Push\Api\Data;
 class InvoiceResultInterface
 {
 
-protected $invoice;
+    protected $invoice;
 
 /**
  * Get invoice list.
@@ -18,10 +18,10 @@ protected $invoice;
  * @api
  * @return \Intelipost\Push\Api\Data\InvoiceResultInterface[]
  */
-public function getInvoice()
-{
-    return $this->invoice;
-}
+    public function getInvoice()
+    {
+        return $this->invoice;
+    }
 
 /**
  * Set items list.
@@ -30,11 +30,10 @@ public function getInvoice()
  * @param \Intelipost\Push\Api\Data\InvoiceResultInterface[] $invoice
  * @return $this
  */
-public function setInvoices(array $invoice = null)
-{
-    $this->invoice = $invoice;
+    public function setInvoices(array $invoice = null)
+    {
+        $this->invoice = $invoice;
 
-    return $this;
-}
-
+        return $this;
+    }
 }

@@ -15,13 +15,10 @@ class MassShip extends \Intelipost\Push\Controller\Adminhtml\Orders
 
     public function execute()
     {
-        try
-        {    
+        try {
             $collection = $this->filter->getCollection($this->collectionFactory->create());
             return $this->massAction($collection);
-        }
-        catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             $this->messageManager->addError($e->getMessage());
             $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
             return $resultRedirect->setPath($this->redirectUrl);
@@ -32,13 +29,11 @@ class MassShip extends \Intelipost\Push\Controller\Adminhtml\Orders
     {
         $collectionData = $collection->getData();
         $errorCount = 0;
-        $totalCount = 0; 
-        foreach($collectionData as $cData)
-        {
+        $totalCount = 0;
+        foreach ($collectionData as $cData) {
             $col = $this->_shipped->create();
             $col->shippedRequestBody($cData);
-            if($col->getErrorMessages())
-            {   
+            if ($col->getErrorMessages()) {
                 $this->messageManager->addError('Entrega ' . $cData['order_number'] . "</br>" .$col->getErrorMessages());
                 $errorCount++;
             }
@@ -46,18 +41,15 @@ class MassShip extends \Intelipost\Push\Controller\Adminhtml\Orders
         }
         $successCount = $totalCount - $errorCount;
 
-        if($successCount == 1)
-        {
+        if ($successCount == 1) {
             $this->messageManager->addSuccess('Entrega despachada com sucesso: 1.');
         }
 
-        if($successCount > 1)
-        {
+        if ($successCount > 1) {
             $this->messageManager->addSuccess('Entregas despachadas com sucesso: ' . $successCount . '.');
         }
         
-        foreach ($collection->getAllIds() as $itemId)
-        {
+        foreach ($collection->getAllIds() as $itemId) {
         }
 
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);

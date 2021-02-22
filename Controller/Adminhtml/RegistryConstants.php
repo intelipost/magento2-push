@@ -10,6 +10,5 @@ namespace Intelipost\Push\Controller\Adminhtml;
 class RegistryConstants
 {
 
-const CURRENT_INTELIPOST_PUSH_ITEM_ID = 'current_intelipost_push_item_id';
-
+    const CURRENT_INTELIPOST_PUSH_ITEM_ID = 'current_intelipost_push_item_id';
 }

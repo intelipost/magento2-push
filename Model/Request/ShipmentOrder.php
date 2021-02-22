@@ -26,7 +26,7 @@ class ShipmentOrder extends AbstractModel
     public $tracking_codes;
 
     public $end_customer;
-    public $shipment_order_volume_array = array();
+    public $shipment_order_volume_array = [];
     public $shipment_order_volume_invoice;
 
     protected $_end_customer_obj;
@@ -40,7 +40,7 @@ class ShipmentOrder extends AbstractModel
     protected $_shipmentFactory;
 
     public function __construct(
-        \Intelipost\Quote\Model\Resource\Shipment\CollectionFactory $shipmentFactory,
+        \Intelipost\Quote\Model\ResourceModel\Shipment\CollectionFactory $shipmentFactory,
         \Intelipost\Push\Model\Request\ShipmentOrder\CustomerFactory $customer,
         \Intelipost\Push\Model\Request\ShipmentOrder\VolumeFactory $volume,
         \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone,
@@ -49,8 +49,7 @@ class ShipmentOrder extends AbstractModel
         \Intelipost\Basic\Helper\Api $helperApi,
         \Intelipost\Quote\Model\Shipment $shipment,
         \Intelipost\Push\Helper\Data $helper
-    )
-    {
+    ) {
         $this->_shipmentFactory                   = $shipmentFactory;
         $this->_end_customer_obj                  = $customer;
         $this->_shipment_order_volume_array_obj   = $volume;
@@ -68,7 +67,7 @@ class ShipmentOrder extends AbstractModel
         $invoiceObj = $this->_shipment_order_volume_invoice_obj->create();
         $volObj     = $this->_shipment_order_volume_array_obj->create();
         $ecObj      = $this->_end_customer_obj->create();
-        
+
         $this->order_number                    = $collectionData['order_number'];
         $this->sales_order_number              = $collectionData['increment_id'];
         $this->quote_id                        = $collectionData['quote_id'];
@@ -85,7 +84,7 @@ class ShipmentOrder extends AbstractModel
         $this->shipment_order_volume_invoice   = $invoiceObj->getInformation($collectionData['order_number']);
         $this->shipment_order_volume_array     = $volObj->getInformation($collectionData['volumes'], $this->shipment_order_volume_invoice);
         $this->end_customer                    = $ecObj->getInformation($collectionData['entity_id'], $collectionData['customer_taxvat']);
-        if($this->_scopeConfig->getValue('intelipost_push/order_status/create_and_ship')){
+        if ($this->_scopeConfig->getValue('intelipost_push/order_status/create_and_ship')) {
             $this->shipped_date                = $this->getNowDateTime();
         }
         $this->created                         = $this->getNowDateTime();
@@ -115,6 +114,11 @@ class ShipmentOrder extends AbstractModel
         $requestBodyObj->shipment_order_sub_type        = $this->shipment_order_sub_type;
         $requestBodyObj->end_customer                   = $this->end_customer;
         $requestBodyObj->shipment_order_volume_array    = $this->shipment_order_volume_array;
+        foreach ($requestBodyObj->shipment_order_volume_array as $volume) {
+            if (!isset($volume->shipment_order_volume_invoice->invoice_number)) {
+                unset($volume->shipment_order_volume_invoice);
+            }
+        }
         $requestBodyObj->shipped_date                   = $this->shipped_date;
         $requestBodyObj->created                        = $this->created;
         //$requestBodyObj->origin_warehouse_code        = $this->origin_warehouse_code;
@@ -127,14 +131,12 @@ class ShipmentOrder extends AbstractModel
     {
         $response = $this->_helperApi->apiRequest('POST', 'shipment_order', $requestBody);
         $result = json_decode($response);
-        
-        if($result->status == 'ERROR')
-        {
+
+        if ($result->status == 'ERROR') {
             $messages = null;
             $errorCount = 1;
 
-            foreach ($result->messages as $_message)
-            {
+            foreach ($result->messages as $_message) {
                 $messages .= ' Erro ('. $errorCount . '): ' .$_message->text. "</br>";
                 $errorCount++;
             }
@@ -142,20 +144,21 @@ class ShipmentOrder extends AbstractModel
             $this->message = $messages;
 
             $_collectionFactory = $this->_shipment->load($collectionData['id'], "id");
-            $_collectionFactory->setIntelipostStatus('error');
+            if (($result->messages[0])->key != 'shipmentOrder.save.already.existing.order.number') {
+                $_collectionFactory->setIntelipostStatus('error');
+            } else {
+                $_collectionFactory->setIntelipostStatus('created');
+                $_collectionFactory->setIntelipostMessage('Ok.');
+            }
             $_collectionFactory->setIntelipostMessage(str_replace('</br>', '', $this->message));
             $_collectionFactory->save();
         }
 
-        if($result->status == 'OK')
-        {
-            foreach($result->content->shipment_order_volume_array as $volume)
-            {
-                if(isset($volume->tracking_code))
-                {
+        if ($result->status == 'OK') {
+            foreach ($result->content->shipment_order_volume_array as $volume) {
+                if (isset($volume->tracking_code)) {
                     $this->tracking_codes .= $volume->tracking_code;
-                    if($volume !== end($result->content->shipment_order_volume_array))
-                    {
+                    if ($volume !== end($result->content->shipment_order_volume_array)) {
                         $this->tracking_codes .= ', ';
                     }
                 }
@@ -171,7 +174,7 @@ class ShipmentOrder extends AbstractModel
 
             $this->updateOrderStatus($orderId, $status);
 
-            if(isset($this->shipped_date)){
+            if (isset($this->shipped_date)) {
                 $_collectionFactory->setIntelipostStatus('shipped');
             }
             $_collectionFactory->setIntelipostMessage('Ok.');
@@ -187,8 +190,7 @@ class ShipmentOrder extends AbstractModel
     public function saveTrackingCodes($collectionData)
     {
         $_collectionFactory = $this->_shipment->load($collectionData['id'], "id");
-        if ($this->tracking_codes)
-        {
+        if ($this->tracking_codes) {
             $_collectionFactory->setTrackingCode($this->tracking_codes);
         }
         $_collectionFactory->save();

@@ -151,10 +151,10 @@ O módulo contempla uma tabela de Notas Fiscais (intelipost_invoice). Os campos 
 
 Para consultar e inserir dados nessa tabela via API, você pode utilizar as seguintes métodos:
 
-**GET** - http://{{url_da_loja}}/rest/V1/push/list  
+**GET** - http://{{url_da_loja}}/rest/v1/push/list  
 Retornará uma lista com todas as notas salvas até o momento.
 
-**POST** - http://{{url_da_loja}}/rest/V1/push/save  
+**POST** - http://{{url_da_loja}}/rest/v1/push/save  
 Adicionará a nota fiscal à tabela.
 
 Request_body:

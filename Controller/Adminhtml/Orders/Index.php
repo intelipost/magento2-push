@@ -10,22 +10,21 @@ namespace Intelipost\Push\Controller\Adminhtml\Orders;
 class Index extends \Intelipost\Push\Controller\Adminhtml\Orders
 {
 
-public function execute()
-{
-	$resultPage = $this->resultPageFactory->create();
+    public function execute()
+    {
+        $resultPage = $this->resultPageFactory->create();
 
-	$resultPage->setActiveMenu('Intelipost_Push::Orders');
-	
-	$resultPage->getConfig()->getTitle()->prepend(__('Orders'));
+        $resultPage->setActiveMenu('Intelipost_Push::Orders');
+    
+        $resultPage->getConfig()->getTitle()->prepend(__('Orders'));
 
-	$resultPage->addBreadcrumb(__('Push'), __('Manage Orders'));
+        $resultPage->addBreadcrumb(__('Push'), __('Manage Orders'));
 
-	return $resultPage;
-}
+        return $resultPage;
+    }
 
-protected function _isAllowed()
-{
-	return $this->_authorization->isAllowed('Intelipost_Push::Orders');
-}
-
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Intelipost_Push::Orders');
+    }
 }

@@ -7,7 +7,7 @@ use Magento\Framework\Model\AbstractModel;
 class Shipped extends AbstractModel
 {
 
-    public $shipArray = array();
+    public $shipArray = [];
     public $order_number;
     public $event_date;
 
@@ -25,8 +25,7 @@ class Shipped extends AbstractModel
         \Magento\Framework\Stdlib\DateTime\DateTime $date,
         \Intelipost\Quote\Model\Shipment $shipment,
         \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone
-    )
-    {
+    ) {
         $this->_helper    = $helper;
         $this->_helperApi = $helperApi;
         $this->_date      = $date;
@@ -62,13 +61,11 @@ class Shipped extends AbstractModel
         $response = $this->_helperApi->apiRequest('POST', 'shipment_order/multi/shipped/with_date', $requestBody);
         $result = json_decode($response);
         
-        if($result->status == 'ERROR')
-        {
+        if ($result->status == 'ERROR') {
             $messages = null;
             $errorCount = 1;
 
-            foreach ($result->messages as $_message)
-            {
+            foreach ($result->messages as $_message) {
                 $messages .= ' Erro ('. $errorCount . '): ' .$_message->text. "</br>";
                 $errorCount++;
             }
@@ -80,8 +77,7 @@ class Shipped extends AbstractModel
             $_collectionFactory->save();
         }
 
-        if($result->status == 'OK')
-        {
+        if ($result->status == 'OK') {
             $_collectionFactory = $this->_shipment->load($collectionData['id'], "id");
             $_collectionFactory->setIntelipostStatus('shipped');
             $_collectionFactory->setIntelipostMessage('Ok.');

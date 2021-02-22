@@ -13,28 +13,28 @@ class InvoiceInterface
 /**#@+
  * Constants defined for keys of the data array. Identical to the name of the getter in snake case
  */
-const ID = 'id';
-const INVOICE_NUMBER = 'invoice_number';
-const ORDER_NUMBER = 'order_number';
-const INVOICE_SERIES = 'invoice_series';
-const INVOICE_KEY = 'invoice_key';
-const INVOICE_DATE = 'invoice_date';
-const INVOICE_TOTAL_VALUE = 'invoice_total_value';
-const INVOICE_PRODUCTS_VALUE = 'invoice_products_value';
-const INVOICE_CFOP = 'invoice_cfop';
+    const ID = 'id';
+    const INVOICE_NUMBER = 'invoice_number';
+    const ORDER_NUMBER = 'order_number';
+    const INVOICE_SERIES = 'invoice_series';
+    const INVOICE_KEY = 'invoice_key';
+    const INVOICE_DATE = 'invoice_date';
+    const INVOICE_TOTAL_VALUE = 'invoice_total_value';
+    const INVOICE_PRODUCTS_VALUE = 'invoice_products_value';
+    const INVOICE_CFOP = 'invoice_cfop';
 
 
 /**#@-*/
 
-protected $id;
-protected $invoice_number;
-protected $order_number;
-protected $invoice_series;
-protected $invoice_key;
-protected $invoice_date;
-protected $invoice_total_value;
-protected $invoice_products_value;
-protected $invoice_cfop;
+    protected $id;
+    protected $invoice_number;
+    protected $order_number;
+    protected $invoice_series;
+    protected $invoice_key;
+    protected $invoice_date;
+    protected $invoice_total_value;
+    protected $invoice_products_value;
+    protected $invoice_cfop;
 
 /**
  * Get item id
@@ -42,10 +42,10 @@ protected $invoice_cfop;
  * @api
  * @return int|null
  */
-public function getId()
-{
-    return $this->id;
-}
+    public function getId()
+    {
+        return $this->id;
+    }
 
 /**
  * Set item id
@@ -54,12 +54,12 @@ public function getId()
  * @param int $id
  * @return $this
  */
-public function setId($id)
-{
-    $this->id = $id;
+    public function setId($id)
+    {
+        $this->id = $id;
 
-    return $this;
-}
+        return $this;
+    }
 
 /**
  * Get invoice number
@@ -67,10 +67,10 @@ public function setId($id)
  * @api
  * @return int|null
  */
-public function getInvoiceNumber()
-{
-    return $this->invoice_number;
-}
+    public function getInvoiceNumber()
+    {
+        return $this->invoice_number;
+    }
 
 /**
  * Set invoice number
@@ -79,12 +79,12 @@ public function getInvoiceNumber()
  * @param int $id
  * @return $this
  */
-public function setInvoiceNumber($invoice_number)
-{
-    $this->invoice_number = $invoice_number;
+    public function setInvoiceNumber($invoice_number)
+    {
+        $this->invoice_number = $invoice_number;
 
-    return $this;
-}
+        return $this;
+    }
 
 /**
  * Get order number
@@ -92,10 +92,10 @@ public function setInvoiceNumber($invoice_number)
  * @api
  * @return string|null
  */
-public function getOrderNumber()
-{
-    return $this->order_number;
-}
+    public function getOrderNumber()
+    {
+        return $this->order_number;
+    }
 
 /**
  * Set order number
@@ -104,12 +104,12 @@ public function getOrderNumber()
  * @param string $order_number
  * @return $this
  */
-public function setOrderNumber($order_number)
-{
-    $this->order_number = $order_number;
+    public function setOrderNumber($order_number)
+    {
+        $this->order_number = $order_number;
 
-    return $this;
-}
+        return $this;
+    }
 
 /**
  * Get invoice series
@@ -117,10 +117,10 @@ public function setOrderNumber($order_number)
  * @api
  * @return string|null
  */
-public function getInvoiceSeries()
-{
-    return $this->invoice_series;
-}
+    public function getInvoiceSeries()
+    {
+        return $this->invoice_series;
+    }
 
 /**
  * Set invoice series
@@ -129,12 +129,12 @@ public function getInvoiceSeries()
  * @param string $invoice_series
  * @return $this
  */
-public function setInvoiceSeries($invoice_series)
-{
-    $this->invoice_series = $invoice_series;
+    public function setInvoiceSeries($invoice_series)
+    {
+        $this->invoice_series = $invoice_series;
 
-    return $this;
-}
+        return $this;
+    }
 
 /**
  * Get invoice key
@@ -142,10 +142,10 @@ public function setInvoiceSeries($invoice_series)
  * @api
  * @return string|null
  */
-public function getInvoiceKey()
-{
-    return $this->invoice_key;
-}
+    public function getInvoiceKey()
+    {
+        return $this->invoice_key;
+    }
 
 /**
  * Set invoice key
@@ -154,12 +154,12 @@ public function getInvoiceKey()
  * @param string $invoice_key
  * @return $this
  */
-public function setInvoiceKey($invoice_key)
-{
-    $this->invoice_key = $invoice_key;
+    public function setInvoiceKey($invoice_key)
+    {
+        $this->invoice_key = $invoice_key;
 
-    return $this;
-}
+        return $this;
+    }
 
 /**
  * Get invoice date
@@ -167,10 +167,10 @@ public function setInvoiceKey($invoice_key)
  * @api
  * @return string|null
  */
-public function getInvoiceDate()
-{
-    return $this->invoice_date;
-}
+    public function getInvoiceDate()
+    {
+        return $this->invoice_date;
+    }
 
 /**
  * Set operation time
@@ -179,12 +179,12 @@ public function getInvoiceDate()
  * @param string $invoice_date
  * @return $this
  */
-public function setInvoiceDate($invoice_date)
-{
-    $this->invoice_date = $invoice_date;
+    public function setInvoiceDate($invoice_date)
+    {
+        $this->invoice_date = $invoice_date;
 
-    return $this;
-}
+        return $this;
+    }
 
 /**
  * Get invoice total value
@@ -192,10 +192,10 @@ public function setInvoiceDate($invoice_date)
  * @api
  * @return string|null
  */
-public function getInvoiceTotalValue()
-{
-    return $this->invoice_total_value;
-}
+    public function getInvoiceTotalValue()
+    {
+        return $this->invoice_total_value;
+    }
 
 /**
  * Set invoice total value
@@ -204,12 +204,12 @@ public function getInvoiceTotalValue()
  * @param string $invoice_total_value
  * @return $this
  */
-public function setInvoiceTotalValue($invoice_total_value)
-{
-    $this->invoice_total_value = $invoice_total_value;
+    public function setInvoiceTotalValue($invoice_total_value)
+    {
+        $this->invoice_total_value = $invoice_total_value;
 
-    return $this;
-}
+        return $this;
+    }
 
 /**
  * Get invoice products value
@@ -217,10 +217,10 @@ public function setInvoiceTotalValue($invoice_total_value)
  * @api
  * @return string|null
  */
-public function getInvoiceProductsValue()
-{
-    return $this->invoice_products_value;
-}
+    public function getInvoiceProductsValue()
+    {
+        return $this->invoice_products_value;
+    }
 
 /**
  * Set invoice products value
@@ -229,12 +229,12 @@ public function getInvoiceProductsValue()
  * @param string $invoice_products_value
  * @return $this
  */
-public function setInvoiceProductsValue($invoice_products_value)
-{
-    $this->invoice_products_value = $invoice_products_value;
+    public function setInvoiceProductsValue($invoice_products_value)
+    {
+        $this->invoice_products_value = $invoice_products_value;
 
-    return $this;
-}
+        return $this;
+    }
 
 /**
  * Get invoice cfop
@@ -242,10 +242,10 @@ public function setInvoiceProductsValue($invoice_products_value)
  * @api
  * @return string|null
  */
-public function getInvoiceCfop()
-{
-    return $this->invoice_cfop;
-}
+    public function getInvoiceCfop()
+    {
+        return $this->invoice_cfop;
+    }
 
 /**
  * Set invoice cfop
@@ -254,12 +254,10 @@ public function getInvoiceCfop()
  * @param string $invoice_cfop
  * @return $this
  */
-public function setInvoiceCfop($invoice_cfop)
-{
-    $this->invoice_cfop = $invoice_cfop;
+    public function setInvoiceCfop($invoice_cfop)
+    {
+        $this->invoice_cfop = $invoice_cfop;
 
-    return $this;
-}
-
-
+        return $this;
+    }
 }
