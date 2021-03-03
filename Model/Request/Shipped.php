@@ -20,7 +20,7 @@ class Shipped extends AbstractModel
     protected $_shipment;
 
     public function __construct(
-        \Intelipost\Basic\Helper\Api $helperApi,
+        \Intelipost\Basic\Client\Intelipost $helperApi,
         \Intelipost\Push\Helper\Data $helper,
         \Magento\Framework\Stdlib\DateTime\DateTime $date,
         \Intelipost\Quote\Model\Shipment $shipment,

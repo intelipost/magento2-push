@@ -46,7 +46,7 @@ class ShipmentOrder extends AbstractModel
         \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone,
         \Intelipost\Push\Model\Request\ShipmentOrder\InvoiceFactory $invoice,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \Intelipost\Basic\Helper\Api $helperApi,
+        \Intelipost\Basic\Client\Intelipost $helperApi,
         \Intelipost\Quote\Model\Shipment $shipment,
         \Intelipost\Push\Helper\Data $helper
     ) {
@@ -76,7 +76,7 @@ class ShipmentOrder extends AbstractModel
         $this->customer_shipping_costs         = $collectionData['customer_shipping_costs'];
         $this->provider_shipping_costs         = $collectionData['provider_shipping_costs'];
         $this->sales_channel                   = $collectionData['sales_channel'];
-        $this->scheduled                       = (int)$collectionData['scheduled'];
+        $this->scheduled                       = (bool)$collectionData['scheduled'];
         $this->scheduling_window_start         = $collectionData['scheduling_window_start'];
         $this->scheduling_window_end           = $collectionData['scheduling_window_end'];
         $this->shipment_order_type             = $collectionData['shipment_order_type'];
@@ -91,8 +91,8 @@ class ShipmentOrder extends AbstractModel
         //$this->origin_warehouse_code         = null;
 
         $requestBody = $this->prepareShipmentRequestBody();
+        $requestBody->delivery_method_external_id = $requestBody->delivery_method_id;
         $this->_helper->logIntelipost(json_encode($requestBody));
-
         $this->sendShipmentRequest(json_encode($requestBody), $collectionData);
     }
 
@@ -131,6 +131,12 @@ class ShipmentOrder extends AbstractModel
     {
         $response = $this->_helperApi->apiRequest('POST', 'shipment_order', $requestBody);
         $result = json_decode($response);
+
+        if(!$result)
+        {
+            $this->message = "Erro desconhecido na API";
+            return;
+        }
 
         if ($result->status == 'ERROR') {
             $messages = null;
