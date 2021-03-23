@@ -14,8 +14,6 @@ use Magento\Framework\Data\OptionSourceInterface;
 
 class CustomerAttribute implements OptionSourceInterface
 {
-    const CUSTOMER_EAV_ENTITY_TYPE_ID = 1;
-
     /**
      * @var CollectionFactory
      */
