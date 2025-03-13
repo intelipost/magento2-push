@@ -115,6 +115,11 @@ class ShipmentOrder extends AbstractModel
         $requestBodyObj->shipment_order_sub_type        = $this->shipment_order_sub_type;
         $requestBodyObj->end_customer                   = $this->end_customer;
         $requestBodyObj->shipment_order_volume_array    = $this->shipment_order_volume_array;
+        foreach($requestBodyObj->shipment_order_volume_array as $volume){
+            if(!isset($volume->shipment_order_volume_invoice->invoice_number)){
+                unset($volume->shipment_order_volume_invoice);
+            }
+        }
         $requestBodyObj->shipped_date                   = $this->shipped_date;
         $requestBodyObj->created                        = $this->created;
         //$requestBodyObj->origin_warehouse_code        = $this->origin_warehouse_code;
@@ -142,7 +147,12 @@ class ShipmentOrder extends AbstractModel
             $this->message = $messages;
 
             $_collectionFactory = $this->_shipment->load($collectionData['id'], "id");
-            $_collectionFactory->setIntelipostStatus('error');
+            if(($result->messages[0])->key != 'shipmentOrder.save.already.existing.order.number'){
+                $_collectionFactory->setIntelipostStatus('error');
+            } else {
+                $_collectionFactory->setIntelipostStatus('created');
+                $_collectionFactory->setIntelipostMessage('Ok.');
+            }
             $_collectionFactory->setIntelipostMessage(str_replace('</br>', '', $this->message));
             $_collectionFactory->save();
         }
